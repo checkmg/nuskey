@@ -5,15 +5,25 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Tips</name>
+  
   <properties>
   	<springframework.version>4.1.7.RELEASE</springframework.version>
   	<junit.version>4.12</junit.version>
+	<maven.checkstyle.plugin.version>2.13</maven.checkstyle.plugin.version>
+	<maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+	<maven.failsafe.plugin.version>2.18</maven.failsafe.plugin.version>  	
   </properties>
+  
   <dependencyManagement>
   	<dependencies>
   		<dependency>
   			<groupId>org.springframework</groupId>
   			<artifactId>spring-context</artifactId>
+  			<version>${springframework.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-web</artifactId>
   			<version>${springframework.version}</version>
   		</dependency>
   		<dependency>
@@ -29,6 +39,67 @@
 
   	</dependencies>
   </dependencyManagement>
+
+	<build>
+		<pluginManagement>
+
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<testSource>1.8</testSource>
+						<testTarget>1.8</testTarget>
+					</configuration>
+				</plugin>
+				<!-- Set default TimeZone to UTC for JUnit tests -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.plugin.version}</version>
+					<configuration>
+						<systemPropertyVariables>
+							<user.timezone>UTC</user.timezone>
+							<jadira.usertype.useJdbc42Apis>true</jadira.usertype.useJdbc42Apis>
+							<lc.profile>local</lc.profile>
+							<tc.log.dir>logs</tc.log.dir>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<!-- Integration tests configuration -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven.failsafe.plugin.version}</version>
+					<configuration>
+						<systemPropertyVariables>
+							<user.timezone>UTC</user.timezone>
+							<lc.profile>local</lc.profile>
+							<tc.log.dir>logs</tc.log.dir>
+						</systemPropertyVariables>
+					</configuration>
+					<executions>
+						<execution>
+							<id>integration-test</id>
+							<goals>
+								<goal>integration-test</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>verify</id>
+							<goals>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>  
   <modules>
   	<module>tips-spring</module>
   </modules>
