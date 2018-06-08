@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RestServiceConfig {
 
-	@Value("CONF_EXT_URL")
+	@Value("${CONF_EXT_URL}")
 	private String externalUrl;
 	
-	@Value("CONF_READ_TIMEOUT")
+	@Value("${CONF_READ_TIMEOUT}")
 	private int readTimeout;
 	
-	@Value("CONF_CONNECTION_TIMEOUT")
+	@Value("${CONF_CONNECTION_TIMEOUT}")
 	private int connectionTimeout;
 	
-	@Value("CONF_MAX_RETRY")
+	@Value("${CONF_MAX_RETRY}")
 	private int maxRetry;
 
 	public String getExternalUrl() {

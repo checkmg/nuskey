@@ -11,7 +11,8 @@
   	<junit.version>4.12</junit.version>
 	<maven.checkstyle.plugin.version>2.13</maven.checkstyle.plugin.version>
 	<maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
-	<maven.failsafe.plugin.version>2.18</maven.failsafe.plugin.version>  	
+	<maven.failsafe.plugin.version>2.18</maven.failsafe.plugin.version> 
+	<apache.http.version>4.5.3</apache.http.version>
   </properties>
   
   <dependencyManagement>
@@ -31,6 +32,11 @@
   			<artifactId>spring-test</artifactId>
   			<version>${springframework.version}</version>  			
   		</dependency>
+  		<dependency>
+  			<groupId>org.apache.httpcomponents</groupId>
+  			<artifactId>httpclient</artifactId>
+  			<version>${apache.http.version}</version>
+  		</dependency>  		
   		<dependency>
   			<groupId>junit</groupId>
   			<artifactId>junit</artifactId>

@@ -18,6 +18,27 @@ public class ExternalServiceImpl implements ExternalService {
 	@Qualifier("externalSvcTemplate")
 	private RestTemplate externalSvcTemplate;
 	
+	
+	public RestServiceConfig getRestServiceConfig() {
+		return restServiceConfig;
+	}
+
+
+	public void setRestServiceConfig(RestServiceConfig restServiceConfig) {
+		this.restServiceConfig = restServiceConfig;
+	}
+
+
+	public RestTemplate getExternalSvcTemplate() {
+		return externalSvcTemplate;
+	}
+
+
+	public void setExternalSvcTemplate(RestTemplate externalSvcTemplate) {
+		this.externalSvcTemplate = externalSvcTemplate;
+	}
+
+
 	public void connectExternalService() {
 		externalSvcTemplate.getForEntity(restServiceConfig.getExternalUrl(), String.class);
 	}
