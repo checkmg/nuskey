@@ -9,7 +9,7 @@ import org.junit.rules.TestName;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class JunitMethodSorter {
+public class JunitMethodSorterTest {
 
 	static StringBuffer order = new StringBuffer();
 	
